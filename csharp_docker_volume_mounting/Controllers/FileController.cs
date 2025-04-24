@@ -8,10 +8,19 @@ namespace csharp_docker_volume_mounting.Controllers;
 public class FileController : ControllerBase
 {
     [HttpPost("UploadFile")]
-    public async Task<IActionResult> UploadFileAsync(FileRequestModel requestModel, CancellationToken cs)
+    public async Task<IActionResult> UploadFileAsync(
+        FileRequestModel requestModel,
+        CancellationToken cs
+    )
     {
-        string fileName = $"{DateTime.UtcNow.ToString("yyyyMMdd_HHmmssfff")}_{requestModel.File.FileName}";
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Uploads", fileName);
+        string fileName =
+            $"{DateTime.UtcNow.ToString("yyyyMMdd_HHmmssfff")}_{requestModel.File.FileName}";
+        string filePath = Path.Combine(
+            Directory.GetCurrentDirectory(),
+            "wwwroot",
+            "Uploads",
+            fileName
+        );
 
         await using var stream = new FileStream(filePath, FileMode.Create);
         await requestModel.File.CopyToAsync(stream, cs);
