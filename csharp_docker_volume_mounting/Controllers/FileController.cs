@@ -1,5 +1,4 @@
 ﻿using csharp_docker_volume_mounting.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace csharp_docker_volume_mounting.Controllers
