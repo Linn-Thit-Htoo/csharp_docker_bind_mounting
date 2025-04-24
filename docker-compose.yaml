@@ -1,0 +1,26 @@
+services:
+  fileapi:
+    image: fileapi:v1
+    build:
+      context: ./csharp_docker_volume_mounting
+      dockerfile: Dockerfile
+    ports:
+      - "5197:80"
+    networks:
+      - app_network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.5"
+          memory: "300M"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    restart: unless-stopped
+    container_name: fileapi
+    hostname: fileapi
+    volumes:
+       - "./csharp_docker_volume_mounting/wwwroot/Uploads:/app/wwwroot/Uploads"
+
+networks:
+  app_network:
+    driver: bridge
