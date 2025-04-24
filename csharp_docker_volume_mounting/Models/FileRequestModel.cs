@@ -1,7 +1,6 @@
-﻿namespace csharp_docker_volume_mounting.Models
+﻿namespace csharp_docker_volume_mounting.Models;
+
+public class FileRequestModel
 {
-    public class FileRequestModel
-    {
-        public IFormFile File { get; set; }
-    }
+    public IFormFile File { get; set; }
 }
